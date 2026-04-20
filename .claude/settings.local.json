@@ -8,7 +8,14 @@
       "Bash(curl -s -o \"lienzo47.jpg\" \"https://jcazttattoo.site/wp-content/uploads/2025/11/lienzo47.jpg\")",
       "Bash(curl -s -o \"lienzo46.jpg\" \"https://jcazttattoo.site/wp-content/uploads/2025/11/lienzo46.jpg\")",
       "mcp__claude_ai_Vercel__deploy_to_vercel",
-      "Bash(vercel --version)"
+      "Bash(vercel --version)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(git push *)"
     ]
   }
 }
