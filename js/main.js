@@ -84,6 +84,82 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight')  navigate(1);
 });
 
+/* ===== POPUP DESCUENTO 15% ===== */
+const popup       = document.getElementById('discount-popup');
+const popupClose  = document.getElementById('popupClose');
+const discountForm = document.getElementById('discountForm');
+const popupError  = document.getElementById('popupError');
+const popupSuccess = document.getElementById('popupSuccess');
+const popupCode   = document.getElementById('popupCode');
+const popupCopy   = document.getElementById('popupCopy');
+
+function openPopup() {
+  if (localStorage.getItem('jcazt_popup_done')) return;
+  popup.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('discountEmail').focus();
+}
+function closePopup() {
+  popup.setAttribute('hidden', '');
+  document.body.style.overflow = '';
+}
+
+// Mostrar después de 8 segundos o al scroll al 40%
+let popupShown = false;
+setTimeout(() => { if (!popupShown) { popupShown = true; openPopup(); } }, 8000);
+window.addEventListener('scroll', () => {
+  if (popupShown || localStorage.getItem('jcazt_popup_done')) return;
+  if (window.scrollY > document.body.scrollHeight * 0.4) {
+    popupShown = true; openPopup();
+  }
+}, { passive: true });
+
+popupClose.addEventListener('click', () => {
+  localStorage.setItem('jcazt_popup_done', 'dismissed');
+  closePopup();
+});
+popup.addEventListener('click', e => { if (e.target === popup) { localStorage.setItem('jcazt_popup_done', 'dismissed'); closePopup(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !popup.hasAttribute('hidden')) { localStorage.setItem('jcazt_popup_done', 'dismissed'); closePopup(); } });
+
+discountForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('discountEmail').value.trim();
+  const btn = discountForm.querySelector('button[type="submit"]');
+
+  popupError.hidden = true;
+  btn.textContent = 'Guardando...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || 'Error al registrar');
+
+    popupCode.textContent = data.code || 'JCAZT15';
+    discountForm.hidden = true;
+    popupSuccess.hidden = false;
+    localStorage.setItem('jcazt_popup_done', 'subscribed');
+  } catch (err) {
+    popupError.textContent = err.message || 'Hubo un error. Intenta de nuevo.';
+    popupError.hidden = false;
+    btn.textContent = 'Obtener descuento';
+    btn.disabled = false;
+  }
+});
+
+popupCopy.addEventListener('click', () => {
+  navigator.clipboard.writeText(popupCode.textContent).then(() => {
+    popupCopy.textContent = '¡Copiado!';
+    popupCopy.classList.add('copied');
+    setTimeout(() => { popupCopy.textContent = 'Copiar código'; popupCopy.classList.remove('copied'); }, 2000);
+  });
+});
+
 /* ===== SCROLL REVEAL ===== */
 const revealEls = document.querySelectorAll(
   '.step, .style-card, .gallery-section, .call-offer-wrap, .about-grid, .faq-item, .cta-final-wrap, .gallery-section-header, .stats-bar'

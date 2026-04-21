@@ -558,6 +558,45 @@
     </div>
   </footer>
 
+  <!-- POPUP DESCUENTO -->
+  <div id="discount-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title" hidden>
+    <div class="popup-card">
+      <button class="popup-close" id="popupClose" aria-label="Cerrar oferta">&times;</button>
+      <div class="popup-badge">Oferta exclusiva</div>
+      <h2 class="popup-title" id="popup-title">15% OFF<br/>en tu primer tatuaje</h2>
+      <p class="popup-sub">Ingresa tu correo y recibe el código de descuento ahora.</p>
+      <form id="discountForm" class="popup-form" novalidate>
+        <div class="popup-field">
+          <input
+            type="email"
+            id="discountEmail"
+            name="email"
+            placeholder="tu@correo.com"
+            autocomplete="email"
+            required
+            aria-label="Tu correo electrónico"
+          />
+          <button type="submit" class="btn btn-primary popup-btn">
+            Obtener descuento
+          </button>
+        </div>
+        <p class="popup-error" id="popupError" role="alert" hidden></p>
+      </form>
+      <div class="popup-success" id="popupSuccess" hidden>
+        <div class="popup-code-wrap">
+          <span class="popup-code-label">Tu código de descuento</span>
+          <div class="popup-code" id="popupCode">JCAZT15</div>
+          <button class="popup-copy" id="popupCopy">Copiar código</button>
+        </div>
+        <p class="popup-success-msg">¡Listo! Comparte este código al agendar tu cita para obtener el 15% de descuento.</p>
+        <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20agendar%20con%20mi%20c%C3%B3digo%20JCAZT15" target="_blank" rel="noopener noreferrer" class="btn btn-primary popup-btn">
+          Agendar ahora con descuento
+        </a>
+      </div>
+      <p class="popup-terms">Un uso por persona · Sin fecha de vencimiento</p>
+    </div>
+  </div>
+
   <!-- LIGHTBOX -->
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
     <button class="lb-close" id="lbClose" aria-label="Cerrar">&times;</button>

@@ -440,6 +440,97 @@ a { color: inherit; text-decoration: none; }
 .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
 .faq-a p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
 
+/* ===== POPUP DESCUENTO ===== */
+.popup-overlay {
+  position: fixed; inset: 0; z-index: 998;
+  background: rgba(0,0,0,0.82);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.popup-overlay:not([hidden]) { opacity: 1; }
+.popup-overlay[hidden] { display: none; }
+
+.popup-card {
+  position: relative;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--red);
+  border-radius: 4px;
+  padding: 2.5rem 2.25rem 2rem;
+  max-width: 440px; width: 100%;
+  transform: translateY(20px);
+  transition: transform 0.35s ease;
+}
+.popup-overlay:not([hidden]) .popup-card { transform: translateY(0); }
+
+.popup-close {
+  position: absolute; top: 1rem; right: 1.25rem;
+  font-size: 1.6rem; line-height: 1; color: var(--muted);
+  background: none; border: none; cursor: pointer;
+  transition: color var(--T); min-width: 44px; min-height: 44px;
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.popup-close:hover { color: var(--white); }
+
+.popup-badge {
+  display: inline-block;
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--red); border: 1px solid rgba(204,31,31,0.4);
+  padding: 3px 12px; border-radius: 999px; margin-bottom: 1.25rem;
+}
+.popup-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.8rem, 8vw, 3.8rem);
+  letter-spacing: 0.04em; line-height: 0.95;
+  color: var(--white); margin-bottom: 0.75rem;
+}
+.popup-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+
+.popup-form { display: flex; flex-direction: column; gap: 0.75rem; }
+.popup-field { display: flex; flex-direction: column; gap: 0.75rem; }
+.popup-field input {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--white); padding: 13px 16px; font-size: 0.92rem;
+  border-radius: 3px; outline: none; transition: border-color 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.popup-field input:focus { border-color: var(--red); }
+.popup-field input::placeholder { color: var(--muted); }
+.popup-btn { width: 100%; justify-content: center; flex-direction: row; font-size: 0.82rem; }
+.popup-error {
+  font-size: 0.8rem; color: var(--red); padding: 0;
+}
+
+/* Success state */
+.popup-success { display: flex; flex-direction: column; gap: 1.25rem; }
+.popup-code-wrap {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 4px; padding: 1.5rem; text-align: center;
+}
+.popup-code-label {
+  display: block; font-size: 0.68rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
+}
+.popup-code {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3rem; letter-spacing: 0.15em; color: var(--red); line-height: 1;
+  margin-bottom: 0.75rem;
+}
+.popup-copy {
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); background: none;
+  border: 1px solid var(--border); padding: 6px 16px;
+  border-radius: 3px; cursor: pointer; transition: var(--T);
+}
+.popup-copy:hover, .popup-copy.copied { border-color: var(--green, #22c55e); color: var(--green, #22c55e); }
+.popup-success-msg { font-size: 0.82rem; color: var(--muted); line-height: 1.6; text-align: center; }
+
+.popup-terms {
+  font-size: 0.68rem; color: var(--muted); text-align: center;
+  margin-top: 1.25rem; letter-spacing: 0.05em;
+}
+
 /* ===== CTA FINAL ===== */
 #agendar {
   padding: 120px 0;

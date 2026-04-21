@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JCAZT — Backoffice</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="images/logo/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808; --dark: #0f0f0f; --card: #161616;
+      --border: #242424; --white: #f0f0f0; --muted: #777;
+      --red: #cc1f1f; --green: #22c55e;
+    }
+    body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; min-height: 100vh; }
+
+    /* LOGIN */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;
+    }
+    .login-card {
+      width: 100%; max-width: 380px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      padding: 2.5rem;
+    }
+    .login-card img { height: 36px; filter: brightness(0) invert(1); margin-bottom: 2rem; }
+    .login-card h1 { font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .login-card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; }
+    .field { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .field label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    .field input {
+      background: var(--dark); border: 1px solid var(--border); color: var(--white);
+      padding: 12px 14px; font-size: 0.9rem; border-radius: 3px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus { border-color: var(--red); }
+    .btn-login {
+      width: 100%; padding: 13px; background: var(--red); color: var(--white);
+      border: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; cursor: pointer; border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .btn-login:hover { background: #e02222; }
+    .login-error { font-size: 0.8rem; color: var(--red); margin-top: 0.75rem; display: none; }
+
+    /* DASHBOARD */
+    #dashboard { display: none; }
+    .admin-nav {
+      background: var(--dark); border-bottom: 1px solid var(--border);
+      padding: 14px 28px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .admin-nav-left { display: flex; align-items: center; gap: 1.25rem; }
+    .admin-nav img { height: 30px; filter: brightness(0) invert(1); opacity: 0.7; }
+    .admin-nav span { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .admin-nav-right { display: flex; align-items: center; gap: 1rem; }
+    .badge-live {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green);
+    }
+    .badge-live::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); animation: pulse 2s infinite;
+    }
+    .btn-logout {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); background: none; border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 3px; cursor: pointer; transition: 0.2s;
+    }
+    .btn-logout:hover { color: var(--white); border-color: var(--white); }
+
+    .admin-body { max-width: 1100px; margin: 0 auto; padding: 2.5rem 28px; }
+
+    /* STATS */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      padding: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .stat-card .label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    .stat-card .value { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; color: var(--red); letter-spacing: 0.04em; line-height: 1; }
+    .stat-card .sub { font-size: 0.75rem; color: var(--muted); }
+
+    /* TABLE */
+    .table-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .table-header h2 { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 0.08em; }
+    .table-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .btn-export {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white); background: var(--card); border: 1px solid var(--border);
+      padding: 8px 18px; border-radius: 3px; cursor: pointer; transition: 0.2s;
+    }
+    .btn-export:hover { border-color: var(--red); color: var(--red); }
+    .search-input {
+      background: var(--card); border: 1px solid var(--border); color: var(--white);
+      padding: 8px 14px; font-size: 0.82rem; border-radius: 3px; outline: none;
+      width: 220px; transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--red); }
+
+    .table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--border); border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+      padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(204,31,31,0.05); }
+    tbody td { padding: 12px 16px; font-size: 0.85rem; }
+    td.email { font-weight: 500; }
+    td.code { font-family: monospace; color: var(--red); font-size: 0.8rem; }
+    td.source { font-size: 0.75rem; color: var(--muted); }
+    td.date { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+
+    .empty-state {
+      text-align: center; padding: 4rem 2rem; color: var(--muted);
+    }
+    .empty-state p { font-size: 0.9rem; }
+
+    .loading {
+      text-align: center; padding: 3rem;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    }
+
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .table-actions { width: 100%; flex-direction: column; align-items: flex-start; }
+      .search-input { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-screen">
+    <div class="login-card">
+      <img src="images/logo/logo.png" alt="JCAZT" />
+      <h1>Backoffice</h1>
+      <p>Ingresa tu contraseña para acceder al panel.</p>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" id="passwordInput" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button class="btn-login" id="loginBtn">Ingresar</button>
+      <p class="login-error" id="loginError">Contraseña incorrecta.</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard">
+    <nav class="admin-nav">
+      <div class="admin-nav-left">
+        <img src="images/logo/logo.png" alt="JCAZT" />
+        <span>Backoffice</span>
+      </div>
+      <div class="admin-nav-right">
+        <span class="badge-live">En vivo</span>
+        <button class="btn-logout" id="logoutBtn">Salir</button>
+      </div>
+    </nav>
+
+    <div class="admin-body">
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card">
+          <span class="label">Total leads</span>
+          <span class="value" id="statTotal">—</span>
+          <span class="sub">emails capturados</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Esta semana</span>
+          <span class="value" id="statWeek">—</span>
+          <span class="sub">nuevos registros</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Hoy</span>
+          <span class="value" id="statToday">—</span>
+          <span class="sub">registros del día</span>
+        </div>
+        <div class="stat-card">
+          <span class="label">Código activo</span>
+          <span class="value" style="font-size:1.5rem;color:var(--white)">JCAZT15</span>
+          <span class="sub">15% de descuento</span>
+        </div>
+      </div>
+
+      <div class="table-header">
+        <h2>Lista de Leads</h2>
+        <div class="table-actions">
+          <input class="search-input" id="searchInput" type="text" placeholder="Buscar email..." />
+          <button class="btn-export" id="exportBtn">Exportar CSV</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="loading" id="tableLoading">Cargando datos...</div>
+        <table id="leadsTable" style="display:none">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>Código</th>
+              <th>Fuente</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="leadsBody"></tbody>
+        </table>
+        <div class="empty-state" id="emptyState" style="display:none">
+          <p>Aún no hay leads registrados.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  let allLeads = [];
+  let adminPassword = '';
+
+  const loginScreen  = document.getElementById('login-screen');
+  const dashboard    = document.getElementById('dashboard');
+  const passwordInput = document.getElementById('passwordInput');
+  const loginBtn     = document.getElementById('loginBtn');
+  const loginError   = document.getElementById('loginError');
+  const logoutBtn    = document.getElementById('logoutBtn');
+  const searchInput  = document.getElementById('searchInput');
+  const exportBtn    = document.getElementById('exportBtn');
+
+  passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') loginBtn.click(); });
+
+  loginBtn.addEventListener('click', async () => {
+    const pwd = passwordInput.value.trim();
+    if (!pwd) return;
+    loginBtn.textContent = 'Verificando...';
+    loginBtn.disabled = true;
+    try {
+      const res = await fetch('/api/leads', { headers: { 'x-admin-password': pwd } });
+      if (res.status === 401) {
+        loginError.style.display = 'block';
+        loginBtn.textContent = 'Ingresar';
+        loginBtn.disabled = false;
+        return;
+      }
+      const data = await res.json();
+      adminPassword = pwd;
+      allLeads = data.leads || [];
+      showDashboard();
+    } catch {
+      loginError.textContent = 'Error de conexión. Verifica la configuración.';
+      loginError.style.display = 'block';
+      loginBtn.textContent = 'Ingresar';
+      loginBtn.disabled = false;
+    }
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    adminPassword = '';
+    allLeads = [];
+    dashboard.style.display = 'none';
+    loginScreen.style.display = 'flex';
+    passwordInput.value = '';
+    loginError.style.display = 'none';
+  });
+
+  function showDashboard() {
+    loginScreen.style.display = 'none';
+    dashboard.style.display = 'block';
+    document.getElementById('tableLoading').style.display = 'none';
+    renderStats(allLeads);
+    renderTable(allLeads);
+  }
+
+  function renderStats(leads) {
+    const now = new Date();
+    const todayStr = now.toISOString().slice(0, 10);
+    const weekAgo = new Date(now - 7 * 86400000);
+
+    document.getElementById('statTotal').textContent = leads.length;
+    document.getElementById('statToday').textContent =
+      leads.filter(l => l.created_at && l.created_at.startsWith(todayStr)).length;
+    document.getElementById('statWeek').textContent =
+      leads.filter(l => l.created_at && new Date(l.created_at) > weekAgo).length;
+  }
+
+  function renderTable(leads) {
+    const tbody = document.getElementById('leadsBody');
+    const table = document.getElementById('leadsTable');
+    const empty = document.getElementById('emptyState');
+
+    if (!leads.length) {
+      table.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+    table.style.display = 'table';
+    tbody.innerHTML = leads.map((l, i) => `
+      <tr>
+        <td style="color:var(--muted)">${leads.length - i}</td>
+        <td class="email">${escapeHtml(l.email)}</td>
+        <td class="code">${escapeHtml(l.discount_code || 'JCAZT15')}</td>
+        <td class="source">${escapeHtml(l.source || '—')}</td>
+        <td class="date">${formatDate(l.created_at)}</td>
+      </tr>
+    `).join('');
+  }
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase();
+    renderTable(allLeads.filter(l => l.email.toLowerCase().includes(q)));
+  });
+
+  exportBtn.addEventListener('click', () => {
+    if (!allLeads.length) return;
+    const rows = [['Email', 'Codigo', 'Fuente', 'Fecha'], ...allLeads.map(l => [
+      l.email, l.discount_code || 'JCAZT15', l.source || '', formatDate(l.created_at)
+    ])];
+    const csv = rows.map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `jcazt-leads-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click(); URL.revokeObjectURL(url);
+  });
+
+  function formatDate(iso) {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleString('es-PE', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>
