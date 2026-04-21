@@ -1,79 +1,322 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-PE">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jcazt — Tatuador multidisciplinario especializado en Blackwork, Realismo y Fine Line. Lima, Perú." />
-  <title>JCAZT — Tattoo Artist</title>
+
+  <!-- SEO primario -->
+  <title>Jcazt | Tatuador en Lima — Blackwork, Realismo y Fine Line</title>
+  <meta name="description" content="Jcazt (Jared Castañeda) es tatuador en Lima, Perú. Especialista en Blackwork, Realismo y Fine Line. Más de 500 piezas. Agenda tu llamada de diseño por S/30." />
+  <meta name="keywords" content="tatuador Lima, tatuajes Lima, blackwork Lima, fine line Lima, realismo tattoo Lima, tattoo Peru, tatuajes personalizados Lima, Jcazt" />
+  <meta name="author" content="Jared Castañeda — Jcazt" />
+  <link rel="canonical" href="https://jcaztattoo.vercel.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jcaztattoo.vercel.app/" />
+  <meta property="og:title" content="Jcazt | Tatuador en Lima — Blackwork, Realismo y Fine Line" />
+  <meta property="og:description" content="Arte permanente en Lima, Perú. Blackwork, Realismo y Fine Line. Agenda tu llamada de diseño por S/30 — descontable de tu cita." />
+  <meta property="og:image" content="https://jcaztattoo.vercel.app/images/jcazt-style/lienzo44-scaled.jpg" />
+  <meta property="og:locale" content="es_PE" />
+  <meta property="og:site_name" content="Jcazt Tattoo" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jcazt | Tatuador en Lima" />
+  <meta name="twitter:description" content="Blackwork, Realismo y Fine Line en Lima, Perú. Agenda tu llamada de diseño por S/30." />
+  <meta name="twitter:image" content="https://jcaztattoo.vercel.app/images/jcazt-style/lienzo44-scaled.jpg" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/logo/logo.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/logo/logo.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/logo/logo.png" />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="theme-color" content="#080808" />
+
+  <!-- Structured Data: LocalBusiness + Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://jcaztattoo.vercel.app/#business",
+        "name": "Jcazt Tattoo",
+        "description": "Estudio de tatuajes en Lima, Perú. Especialista en Blackwork, Realismo y Fine Line.",
+        "url": "https://jcaztattoo.vercel.app/",
+        "telephone": "+51993593781",
+        "email": "Jcazt@outlook.es",
+        "image": "https://jcaztattoo.vercel.app/images/profile/profile.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lima",
+          "addressCountry": "PE"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "addressCountry": "PE",
+          "addressLocality": "Lima"
+        },
+        "sameAs": [
+          "https://www.instagram.com/jcaztc/"
+        ],
+        "priceRange": "S/30 – S/500+",
+        "openingHours": "Mo-Sa 10:00-20:00"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://jcaztattoo.vercel.app/#artist",
+        "name": "Jared Castañeda",
+        "alternateName": "Jcazt",
+        "jobTitle": "Tatuador",
+        "url": "https://jcaztattoo.vercel.app/",
+        "sameAs": ["https://www.instagram.com/jcaztc/"],
+        "knowsAbout": ["Blackwork", "Realismo", "Fine Line", "Tatuajes"],
+        "worksFor": { "@id": "https://jcaztattoo.vercel.app/#business" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué incluye la llamada de diseño de S/30?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En 30 minutos defines el concepto de tu tatuaje: estilo, tamaño, ubicación y referencias visuales. Al final tienes una cotización exacta. Los S/30 se descuentan del precio final cuando agendas la cita."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta un tatuaje con Jcazt en Lima?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Los tatuajes pequeños (minis y fine line) parten desde S/80. Los trabajos de blackwork o realismo se cotizan por sesión según tamaño y complejidad. La llamada de diseño de S/30 es la mejor forma de recibir una cotización exacta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Jcazt hace tatuajes sin cita previa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Por el momento trabaja solo con cita previa para garantizar el tiempo y la dedicación que cada pieza merece. Escríbele por WhatsApp para ver disponibilidad."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puede tatuar una idea aunque no tenga el diseño terminado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. No necesitas llegar con el diseño listo, solo con la idea. La llamada de diseño existe para transformar tu concepto en una pieza lista para tatuar."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Ir al contenido principal</a>
 
   <!-- NAV -->
-  <nav id="navbar">
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
     <a href="#" class="nav-logo">
-      <img src="images/logo/logo.png" alt="JCAZT Logo" />
+      <img src="images/logo/logo.png" alt="JCAZT" />
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menú">
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#estilos">Estilos</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#sobre-mi">Sobre mí</a></li>
-      <li><a href="#contacto" class="nav-cta">Cotizar</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#galeria">Portfolio</a></li>
+      <li><a href="#sobre-mi">Artista</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#agendar" class="nav-cta">Agendar →</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="hero-bg"></div>
+  <section id="hero" aria-label="Portada">
+    <div class="hero-bg">
+      <img src="images/jcazt-style/lienzo44-scaled.jpg" alt="Blackwork tattoo by Jcazt" />
+    </div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Jared Castañeda</p>
-      <h1 class="hero-title">JCAZT</h1>
+      <span class="hero-location">Lima, Perú</span>
+      <h1 class="hero-title">ARTE<br/>QUE<br/>DURA.</h1>
       <p class="hero-sub">Blackwork · Realismo · Fine Line</p>
       <div class="hero-actions">
-        <a href="#galeria" class="btn btn-outline">Ver portfolio</a>
-        <a href="https://wa.me/51993593781?text=Hola%20Jcazt,%20me%20gustar%C3%ADa%20cotizar%20un%20tatuaje" target="_blank" class="btn btn-primary">Cotizar tatuaje</a>
+        <a href="#agendar" class="btn btn-primary">
+          Llamada de diseño
+          <span class="btn-badge">S/30 · 30 min</span>
+        </a>
+        <a href="#galeria" class="btn btn-ghost">Ver portfolio</a>
       </div>
     </div>
-    <div class="hero-scroll-hint">
+    <div class="hero-scroll">
       <span>scroll</span>
-      <div class="scroll-line"></div>
+      <div class="scroll-bar"></div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+  <!-- STATS BAR -->
+  <div class="stats-bar" aria-label="Estadísticas">
+    <div class="stat-item">
+      <strong>+500</strong>
+      <span>Tatuajes realizados</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <strong>5+</strong>
+      <span>Años de experiencia</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <strong>3</strong>
+      <span>Estilos dominados</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <strong>100%</strong>
+      <span>Arte personalizado</span>
+    </div>
+  </div>
+
+  <!-- OFERTA DE LLAMADA -->
+  <section id="oferta-llamada">
+    <div class="container">
+      <div class="call-offer-wrap">
+        <div class="call-offer-text">
+          <span class="eyebrow">Primer paso</span>
+          <h2>Llamada de<br/>Diseño Personalizado</h2>
+          <p>¿Tienes una idea pero no sabes cómo llevarla a la piel? En 30 minutos definimos juntos el concepto, el estilo y el tamaño ideal de tu tatuaje.</p>
+          <ul class="call-benefits">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Concepto y boceto orientativo
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Estilo y ubicación recomendados
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Cotización exacta sin sorpresas
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Los S/30 se descuentan de tu cita
+            </li>
+          </ul>
+          <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20agendar%20una%20llamada%20de%20dise%C3%B1o%20de%2030%20minutos" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
+            Agendar llamada — S/30
+          </a>
+        </div>
+        <div class="call-offer-visual">
+          <div class="price-card">
+            <div class="price-card-top">
+              <span class="price-label">Llamada de Diseño</span>
+              <div class="price-amount">
+                <span class="price-currency">S/</span>
+                <span class="price-num">30</span>
+              </div>
+              <span class="price-duration">30 minutos · Por WhatsApp o videollamada</span>
+            </div>
+            <div class="price-card-divider"></div>
+            <div class="price-card-bot">
+              <p class="price-note">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Los S/30 se acreditan al costo final de tu tatuaje
+              </p>
+              <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20agendar%20una%20llamada%20de%20dise%C3%B1o%20de%2030%20minutos" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">
+                Reservar ahora
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Cómo funciona</span>
+        <h2 class="section-title">De la idea<br/>al tatuaje</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>Llamada de diseño</h3>
+            <p>Cuéntame tu idea y te oriento sobre estilo, tamaño y ubicación. Definimos el concepto en 30 minutos.</p>
+            <span class="step-price">S/30 — descontable</span>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>Boceto y aprobación</h3>
+            <p>Diseño el boceto personalizado basado en lo que hablamos. Lo revisamos juntos hasta que esté perfecto.</p>
+            <span class="step-price">Incluido en la cita</span>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>Tu tatuaje</h3>
+            <p>Agendamos la cita y convertimos tu idea en arte permanente sobre tu piel.</p>
+            <span class="step-price">Cotización personalizada</span>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-cta">
+        <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20agendar%20una%20llamada%20de%20dise%C3%B1o%20de%2030%20minutos" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
+          Empieza ahora — S/30
+        </a>
+        <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20cotizar%20un%20tatuaje" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          Solo quiero cotizar
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- ESTILOS -->
   <section id="estilos">
     <div class="container">
-      <h2 class="section-title">Estilos</h2>
+      <div class="section-header">
+        <span class="eyebrow">Especialidades</span>
+        <h2 class="section-title">Estilos</h2>
+      </div>
       <div class="styles-grid">
-        <div class="style-card" data-filter="jcazt-style">
+        <div class="style-card">
           <div class="style-img" style="background-image:url('images/jcazt-style/lienzo44-scaled.jpg')"></div>
           <div class="style-info">
             <h3>Blackwork</h3>
-            <p>Trazos fuertes, contrastes impactantes y una identidad visual que perdura.</p>
+            <p>Trazos fuertes, contrastes impactantes. Un lenguaje visual que grita sin hablar.</p>
           </div>
         </div>
-        <div class="style-card" data-filter="jcazt-style">
+        <div class="style-card">
           <div class="style-img" style="background-image:url('images/jcazt-style/lienzo37-scaled.jpg')"></div>
           <div class="style-info">
             <h3>Realismo</h3>
-            <p>Cada detalle capturado con precisión quirúrgica. Arte que respira.</p>
+            <p>Cada detalle capturado con precisión. Arte que parece respirar sobre tu piel.</p>
           </div>
         </div>
-        <div class="style-card" data-filter="minis-fineline">
+        <div class="style-card">
           <div class="style-img" style="background-image:url('images/minis-fineline/lienzo15.jpg')"></div>
           <div class="style-info">
             <h3>Fine Line</h3>
-            <p>Delicadeza y elegancia en cada línea. Minimalismo que enamora.</p>
+            <p>Delicadeza y elegancia en cada trazo. Minimalismo que enamora a primera vista.</p>
           </div>
         </div>
       </div>
@@ -83,7 +326,10 @@
   <!-- GALERÍA -->
   <section id="galeria">
     <div class="container">
-      <h2 class="section-title">Portfolio</h2>
+      <div class="section-header">
+        <span class="eyebrow">Trabajo real</span>
+        <h2 class="section-title">Portfolio</h2>
+      </div>
 
       <!-- JCAZT STYLE -->
       <div class="gallery-section" id="sec-jcazt-style">
@@ -129,6 +375,9 @@
           <div class="gallery-item" data-section="jcazt-style" data-src="images/jcazt-style/lienzo10.jpg"><img src="images/jcazt-style/lienzo10.jpg" alt="Jcazt Style" loading="lazy" /><div class="gallery-overlay"><span>+</span></div></div>
           <div class="gallery-item" data-section="jcazt-style" data-src="images/jcazt-style/20251207_180644-scaled.jpg"><img src="images/jcazt-style/20251207_180644-scaled.jpg" alt="Jcazt Style" loading="lazy" /><div class="gallery-overlay"><span>+</span></div></div>
         </div>
+        <div class="gallery-section-cta">
+          <a href="#agendar" class="btn btn-outline btn-sm">¿Te gustó alguno? Agenda tu llamada →</a>
+        </div>
       </div>
 
       <!-- MINIS / FINE LINE -->
@@ -171,6 +420,9 @@
           <div class="gallery-item" data-section="minis-fineline" data-src="images/minis-fineline/20250918_230927-scaled.jpg"><img src="images/minis-fineline/20250918_230927-scaled.jpg" alt="Fine Line" loading="lazy" /><div class="gallery-overlay"><span>+</span></div></div>
           <div class="gallery-item" data-section="minis-fineline" data-src="images/minis-fineline/20250918_231051-scaled.jpg"><img src="images/minis-fineline/20250918_231051-scaled.jpg" alt="Fine Line" loading="lazy" /><div class="gallery-overlay"><span>+</span></div></div>
         </div>
+        <div class="gallery-section-cta">
+          <a href="#agendar" class="btn btn-outline btn-sm">¿Te gustó alguno? Agenda tu llamada →</a>
+        </div>
       </div>
 
       <!-- CONCEPTUAL -->
@@ -186,7 +438,6 @@
           <div class="gallery-item" data-section="conceptual" data-src="images/conceptual/lienzo46.jpg"><img src="images/conceptual/lienzo46.jpg" alt="Conceptual" loading="lazy" /><div class="gallery-overlay"><span>+</span></div></div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -195,68 +446,115 @@
     <div class="container about-grid">
       <div class="about-img">
         <img src="images/profile/profile.jpg" alt="Jcazt — Jared Castañeda" />
+        <div class="about-img-tag">
+          <span>@jcaztc</span>
+        </div>
       </div>
       <div class="about-text">
-        <h2 class="section-title left">Sobre mí</h2>
-        <p class="about-quote">"El arte no es un objeto, es una experiencia."</p>
-        <p>Soy Jared Castañeda, artista multidisciplinario conocido como <strong>Jcazt</strong>. Mi trabajo transforma ideas en arte permanente sobre piel, conectando cada pieza con la esencia de quien la lleva.</p>
-        <p>Especializado en <strong>Blackwork</strong>, <strong>Realismo</strong> y <strong>Fine Line</strong> — tres lenguajes distintos que uso para contar historias únicas e irrepetibles.</p>
-        <div class="about-stats">
-          <div class="stat">
-            <span class="stat-num">+500</span>
-            <span class="stat-label">Tatuajes realizados</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">3</span>
-            <span class="stat-label">Estilos dominados</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">5+</span>
-            <span class="stat-label">Años de experiencia</span>
-          </div>
+        <span class="eyebrow">El artista</span>
+        <h2 class="section-title left">Jared<br/>Castañeda</h2>
+        <p class="about-quote">"Cada tatuaje es una historia que eliges contar para siempre."</p>
+        <p>Soy Jcazt — artista multidisciplinario especializado en transformar ideas en arte permanente. Mi proceso siempre empieza por entender qué quieres contar, no solo qué quieres tatuar.</p>
+        <p>Con más de 5 años tatuando y +500 piezas realizadas, domino Blackwork, Realismo y Fine Line para adaptar el estilo perfecto a cada persona.</p>
+        <div class="about-cta">
+          <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20agendar%20una%20llamada%20de%20dise%C3%B1o%20de%2030%20minutos" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Hablemos de tu idea</a>
+          <a href="https://www.instagram.com/jcaztc/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-sm">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
         </div>
-        <a href="https://www.instagram.com/jcaztc/" target="_blank" class="btn btn-outline">Ver Instagram</a>
       </div>
     </div>
   </section>
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <div class="container contact-wrap">
-      <h2 class="section-title">Hablemos</h2>
-      <p class="contact-sub">¿Listo para llevar tu idea a la piel? Escríbeme y cotizamos juntos.</p>
-      <div class="contact-cards">
-        <a href="https://wa.me/51993593781?text=Hola%20Jcazt,%20me%20gustar%C3%ADa%20cotizar%20un%20tatuaje" target="_blank" class="contact-card">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <div>
-            <strong>WhatsApp</strong>
-            <span>+51 993 593 781</span>
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Dudas frecuentes</span>
+        <h2 class="section-title">FAQ</h2>
+      </div>
+      <div class="faq-list" role="list">
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">¿Qué incluye la llamada de diseño de S/30? <span aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region">
+            <p>En 30 minutos defines el concepto de tu tatuaje: estilo, tamaño, ubicación y referencias visuales. Al final tienes una cotización exacta. Los S/30 se descuentan del precio final cuando agendas la cita.</p>
           </div>
-        </a>
-        <a href="https://www.instagram.com/jcaztc/" target="_blank" class="contact-card">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          <div>
-            <strong>Instagram</strong>
-            <span>@jcaztc</span>
+        </div>
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">¿Cuánto cuesta un tatuaje en Lima con Jcazt? <span aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region">
+            <p>El precio depende del tamaño, complejidad y estilo. Los tatuajes pequeños (minis y fine line) parten desde S/80. Los trabajos de blackwork o realismo se cotizan por sesión. La llamada de diseño es la mejor forma de recibir tu cotización exacta.</p>
           </div>
-        </a>
-        <a href="mailto:Jcazt@outlook.es" class="contact-card">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <div>
-            <strong>Email</strong>
-            <span>Jcazt@outlook.es</span>
+        </div>
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">¿Haces tatuajes sin cita previa? <span aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region">
+            <p>Por el momento trabajo solo con cita previa para garantizar el tiempo y la dedicación que cada pieza merece. Escríbeme por WhatsApp para ver disponibilidad.</p>
           </div>
-        </a>
+        </div>
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">¿Puedes tatuar mi idea aunque no tenga el diseño terminado? <span aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region">
+            <p>Sí, ese es exactamente mi trabajo. No necesitas llegar con el diseño listo — solo con la idea. La llamada de diseño existe para transformar tu concepto en una pieza lista para tatuar.</p>
+          </div>
+        </div>
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">¿Dónde está el estudio? <span aria-hidden="true">+</span></button>
+          <div class="faq-a" role="region">
+            <p>Actualmente el estudio está en reubicación. La dirección exacta se confirma al agendar tu cita por WhatsApp.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- AGENDAR CTA FINAL -->
+  <section id="agendar">
+    <div class="container">
+      <div class="cta-final-wrap">
+        <span class="eyebrow">Empieza hoy</span>
+        <h2>¿Listo para<br/>tatuar tu idea?</h2>
+        <p>El primer paso es una conversación. Agenda tu llamada de diseño de 30 minutos y convertimos tu concepto en arte real.</p>
+        <div class="cta-final-actions">
+          <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20agendar%20una%20llamada%20de%20dise%C3%B1o%20de%2030%20minutos" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
+            Llamada de diseño — S/30
+          </a>
+          <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20cotizar%20un%20tatuaje" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            Solo quiero cotizar
+          </a>
+        </div>
+        <p class="cta-reassure">Sin compromiso · Respuesta en menos de 24h</p>
+      </div>
+    </div>
+  </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
     <div class="container footer-inner">
-      <img src="images/logo/logo.png" alt="JCAZT" class="footer-logo" />
-      <p class="footer-tagline">GO FUCKING TATTOO</p>
-      <p class="footer-copy">&copy; 2026 Jcazt — Jared Castañeda</p>
+      <div class="footer-top">
+        <img src="images/logo/logo.png" alt="JCAZT" class="footer-logo" />
+        <div class="footer-links">
+          <a href="#proceso">Proceso</a>
+          <a href="#galeria">Portfolio</a>
+          <a href="#sobre-mi">Artista</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/jcaztc/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/51993593781" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-tagline">GO FUCKING TATTOO</p>
+        <p class="footer-copy">&copy; 2026 Jcazt — Jared Castañeda · Lima, Perú</p>
+      </div>
     </div>
   </footer>
 
@@ -271,9 +569,9 @@
   </div>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/51993593781?text=Hola%20Jcazt,%20me%20gustar%C3%ADa%20cotizar%20un%20tatuaje" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <a href="https://wa.me/51993593781?text=Hola%20Jcazt%2C%20quiero%20agendar%20una%20llamada%20de%20dise%C3%B1o%20de%2030%20minutos" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    <span>Cotizar</span>
+    <span>Agendar llamada</span>
   </a>
 
   <script src="js/main.js"></script>

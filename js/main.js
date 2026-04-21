@@ -1,42 +1,60 @@
-/* ===== NAVBAR SCROLL ===== */
+/* ===== NAVBAR ===== */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
 
 /* ===== MOBILE NAV ===== */
 const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
+const navLinks  = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
+  const isOpen = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen);
+  navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
 });
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+  navToggle.setAttribute('aria-label', 'Abrir menú');
+}));
 
-/* ===== HERO PARALLAX ===== */
-const heroBg = document.querySelector('.hero-bg');
+/* ===== HERO BG PARALLAX ===== */
+const heroBgImg = document.querySelector('.hero-bg img');
 window.addEventListener('scroll', () => {
   if (window.scrollY < window.innerHeight) {
-    heroBg.style.transform = `scale(1.05) translateY(${window.scrollY * 0.15}px)`;
+    heroBgImg.style.transform = `scale(1.04) translateY(${window.scrollY * 0.12}px)`;
   }
 }, { passive: true });
 
+/* ===== FAQ ACCORDION ===== */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const btn = item.querySelector('.faq-q');
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o => {
+      o.classList.remove('open');
+      o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
 /* ===== LIGHTBOX ===== */
 const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-const lbClose = document.getElementById('lbClose');
-const lbPrev = document.getElementById('lbPrev');
-const lbNext = document.getElementById('lbNext');
-const galleryItems = document.querySelectorAll('.gallery-item');
+const lbImg    = document.getElementById('lbImg');
+const lbClose  = document.getElementById('lbClose');
+const lbPrev   = document.getElementById('lbPrev');
+const lbNext   = document.getElementById('lbNext');
 
-let sectionItems = [];
-let currentIndex = 0;
+let sectionItems = [], currentIndex = 0;
 
-function openLightbox(clickedItem) {
-  const section = clickedItem.closest('.masonry-grid');
-  sectionItems = [...section.querySelectorAll('.gallery-item')];
-  currentIndex = sectionItems.indexOf(clickedItem);
+function openLightbox(item) {
+  const grid = item.closest('.masonry-grid');
+  sectionItems = [...grid.querySelectorAll('.gallery-item')];
+  currentIndex = sectionItems.indexOf(item);
   lbImg.src = sectionItems[currentIndex].dataset.src;
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -51,38 +69,36 @@ function closeLightbox() {
 function navigate(dir) {
   currentIndex = (currentIndex + dir + sectionItems.length) % sectionItems.length;
   lbImg.style.opacity = '0';
-  setTimeout(() => {
-    lbImg.src = sectionItems[currentIndex].dataset.src;
-    lbImg.style.opacity = '1';
-  }, 150);
+  setTimeout(() => { lbImg.src = sectionItems[currentIndex].dataset.src; lbImg.style.opacity = '1'; }, 150);
 }
 
-galleryItems.forEach(item => {
-  item.addEventListener('click', () => openLightbox(item));
-});
-
+document.querySelectorAll('.gallery-item').forEach(item => item.addEventListener('click', () => openLightbox(item)));
 lbClose.addEventListener('click', closeLightbox);
-lbPrev.addEventListener('click', () => navigate(-1));
-lbNext.addEventListener('click', () => navigate(1));
-lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', (e) => {
+lbPrev.addEventListener('click',  () => navigate(-1));
+lbNext.addEventListener('click',  () => navigate(1));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => {
   if (!lightbox.classList.contains('open')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') navigate(-1);
-  if (e.key === 'ArrowRight') navigate(1);
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowLeft')   navigate(-1);
+  if (e.key === 'ArrowRight')  navigate(1);
 });
 
 /* ===== SCROLL REVEAL ===== */
-const revealEls = document.querySelectorAll('.style-card, .gallery-section, .about-grid, .contact-card, .section-title, .about-text p, .about-stats, .gallery-section-header');
+const revealEls = document.querySelectorAll(
+  '.step, .style-card, .gallery-section, .call-offer-wrap, .about-grid, .faq-item, .cta-final-wrap, .gallery-section-header, .stats-bar'
+);
 revealEls.forEach(el => el.classList.add('reveal'));
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
+new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-revealEls.forEach(el => observer.observe(el));
+}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' }).observe
+? (() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  })()
+: revealEls.forEach(el => el.classList.add('visible'));
