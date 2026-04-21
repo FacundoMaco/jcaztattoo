@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/upload.js": { "maxDuration": 30 },
+    "api/images.js": { "maxDuration": 15 },
+    "api/leads.js":  { "maxDuration": 10 },
+    "api/subscribe.js": { "maxDuration": 10 }
+  }
+}
