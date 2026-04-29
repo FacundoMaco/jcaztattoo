@@ -123,6 +123,8 @@
     .img-card:hover img { transform: scale(1.05); }
     .img-card-overlay { position: absolute; inset: 0; background: rgba(8,8,8,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; opacity: 0; transition: opacity 0.2s; }
     .img-card:hover .img-card-overlay { opacity: 1; }
+    .btn-replace-img { padding: 7px 16px; background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.3); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 3px; font-family: inherit; transition: background 0.2s; }
+    .btn-replace-img:hover { background: rgba(255,255,255,0.2); }
     .btn-delete-img { padding: 7px 16px; background: var(--red); color: var(--white); border: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 3px; font-family: inherit; transition: background 0.2s; }
     .btn-delete-img:hover { background: #e02222; }
     .img-card-name { font-size: 0.65rem; color: rgba(240,240,240,0.6); max-width: 120px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -399,6 +401,7 @@ async function loadImages(section) {
       <div class="img-card" data-path="${esc(img.path)}">
         <img src="${esc(img.url)}" alt="Tatuaje" loading="lazy" />
         <div class="img-card-overlay">
+          <button class="btn-replace-img" onclick="replaceImage('${esc(img.path)}', this)">Reemplazar</button>
           <button class="btn-delete-img" onclick="deleteImage('${esc(img.path)}', this)">Eliminar</button>
           <span class="img-card-name">${esc(img.name)}</span>
         </div>
@@ -429,6 +432,46 @@ async function deleteImage(path, btn) {
       alert('Error al eliminar la imagen.');
     }
   } catch { btn.textContent = 'Eliminar'; btn.disabled = false; }
+}
+
+// ===== REPLACE IMAGE =====
+async function replaceImage(oldPath, btn) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/jpeg,image/png,image/webp';
+  input.click();
+  input.onchange = async () => {
+    const file = input.files[0];
+    if (!file) return;
+    btn.textContent = 'Subiendo...'; btn.disabled = true;
+    try {
+      const compressed = await compressImage(file);
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+        body: JSON.stringify({ section: currentSection, filename: file.name, data: compressed.data, mimetype: compressed.type }),
+      });
+      if (!res.ok) throw new Error();
+      const { path: newPath, url: newUrl } = await res.json();
+      // delete old
+      await fetch('/api/images', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+        body: JSON.stringify({ path: oldPath }),
+      });
+      // update card in-place
+      const card = btn.closest('.img-card');
+      card.querySelector('img').src = newUrl + '?v=' + Date.now();
+      card.dataset.path = newPath;
+      btn.setAttribute('onclick', `replaceImage('${esc(newPath)}', this)`);
+      card.querySelector('.btn-delete-img').setAttribute('onclick', `deleteImage('${esc(newPath)}', this)`);
+      card.querySelector('.img-card-name').textContent = file.name;
+      btn.textContent = 'Reemplazar'; btn.disabled = false;
+    } catch {
+      btn.textContent = 'Reemplazar'; btn.disabled = false;
+      alert('Error al reemplazar imagen.');
+    }
+  };
 }
 
 function updateImgCount() {

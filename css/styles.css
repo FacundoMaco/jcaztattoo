@@ -602,6 +602,8 @@ footer { background: var(--dark); border-top: 1px solid var(--border); padding: 
 .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .footer-tagline { font-family: 'Bebas Neue', cursive; font-size: 1rem; letter-spacing: 0.35em; color: var(--red); }
 .footer-copy { font-size: 0.72rem; color: var(--muted); }
+.footer-admin-link { font-size: 0.65rem; color: rgba(240,240,240,0.15); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: color 0.3s; }
+.footer-admin-link:hover { color: var(--muted); }
 
 /* ===== LIGHTBOX ===== */
 .lightbox {

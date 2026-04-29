@@ -95,7 +95,12 @@ function navigate(dir) {
   setTimeout(() => { lbImg.src = sectionItems[currentIndex].dataset.src; lbImg.style.opacity = '1'; }, 150);
 }
 
-document.querySelectorAll('.gallery-item').forEach(item => item.addEventListener('click', () => openLightbox(item)));
+document.querySelectorAll('.masonry-grid').forEach(grid => {
+  grid.addEventListener('click', e => {
+    const item = e.target.closest('.gallery-item');
+    if (item) openLightbox(item);
+  });
+});
 lbClose.addEventListener('click', closeLightbox);
 lbPrev.addEventListener('click',  () => navigate(-1));
 lbNext.addEventListener('click',  () => navigate(1));
@@ -201,3 +206,30 @@ new IntersectionObserver((entries) => {
     revealEls.forEach(el => io.observe(el));
   })()
 : revealEls.forEach(el => el.classList.add('visible'));
+
+/* ===== DYNAMIC GALLERY (Supabase) ===== */
+const ALT_MAP = { 'jcazt-style': 'Jcazt Style', 'minis-fineline': 'Fine Line', 'conceptual': 'Conceptual' };
+
+async function loadGallery() {
+  try {
+    const res = await fetch('/api/images');
+    if (!res.ok) return;
+    const data = await res.json();
+    for (const section of ['jcazt-style', 'minis-fineline', 'conceptual']) {
+      const images = data.images?.[section];
+      if (!images || images.length === 0) continue;
+      const grid = document.querySelector(`#sec-${section} .masonry-grid`);
+      const countEl = document.querySelector(`#sec-${section} .section-count`);
+      const cardCountEl = document.querySelector(`.gallery-filter-card[data-target="${section}"] .gfc-count`);
+      if (!grid) continue;
+      grid.innerHTML = images.map(img =>
+        `<div class="gallery-item" data-section="${section}" data-src="${img.url}">` +
+        `<img src="${img.url}" alt="${ALT_MAP[section]}" loading="lazy" />` +
+        `<div class="gallery-overlay"><span>+</span></div></div>`
+      ).join('');
+      if (countEl) countEl.textContent = `${images.length} piezas`;
+      if (cardCountEl) cardCountEl.textContent = `${images.length} piezas`;
+    }
+  } catch { /* keep static fallback */ }
+}
+loadGallery();
