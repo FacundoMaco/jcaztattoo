@@ -208,14 +208,14 @@ new IntersectionObserver((entries) => {
 : revealEls.forEach(el => el.classList.add('visible'));
 
 /* ===== DYNAMIC GALLERY (Supabase) ===== */
-const ALT_MAP = { 'jcazt-style': 'Jcazt Style', 'minis-fineline': 'Fine Line', 'conceptual': 'Conceptual' };
+const ALT_MAP = { 'jcazt-style': 'Jcazt Style', 'minis-fineline': 'Fine Line', 'conceptual': 'Conceptual', 'nuevo': 'Nuevo' };
 
 async function loadGallery() {
   try {
     const res = await fetch('/api/images');
     if (!res.ok) return;
     const data = await res.json();
-    for (const section of ['jcazt-style', 'minis-fineline', 'conceptual']) {
+    for (const section of ['jcazt-style', 'minis-fineline', 'conceptual', 'nuevo']) {
       const images = data.images?.[section];
       if (!images || images.length === 0) continue;
       const grid = document.querySelector(`#sec-${section} .masonry-grid`);

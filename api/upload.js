@@ -1,6 +1,6 @@
 export const config = { api: { bodyParser: { sizeLimit: '8mb' } } };
 
-const SECTIONS = ['jcazt-style', 'minis-fineline', 'conceptual'];
+const SECTIONS = ['jcazt-style', 'minis-fineline', 'conceptual', 'nuevo'];
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');

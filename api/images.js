@@ -1,4 +1,4 @@
-const SECTIONS = ['jcazt-style', 'minis-fineline', 'conceptual'];
+const SECTIONS = ['jcazt-style', 'minis-fineline', 'conceptual', 'nuevo'];
 
 function auth(req) {
   const pwd = req.headers['x-admin-password'] || req.query.p;
