@@ -42,6 +42,29 @@ document.querySelectorAll('.faq-item').forEach(item => {
   });
 });
 
+/* ===== GALLERY FILTER ===== */
+const galleryCategoryCards = document.getElementById('galleryCategoryCards');
+const galleryView = document.getElementById('galleryView');
+const galleryBack = document.getElementById('galleryBack');
+
+document.querySelectorAll('.gallery-filter-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const target = card.dataset.target;
+    galleryCategoryCards.hidden = true;
+    galleryView.removeAttribute('hidden');
+    document.querySelectorAll('#galleryView .gallery-section').forEach(sec => {
+      sec.hidden = sec.id !== `sec-${target}`;
+    });
+    document.getElementById('galeria').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+galleryBack.addEventListener('click', () => {
+  galleryView.setAttribute('hidden', '');
+  galleryCategoryCards.removeAttribute('hidden');
+  document.getElementById('galeria').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 /* ===== LIGHTBOX ===== */
 const lightbox = document.getElementById('lightbox');
 const lbImg    = document.getElementById('lbImg');

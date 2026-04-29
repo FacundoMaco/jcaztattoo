@@ -290,38 +290,6 @@
     </div>
   </section>
 
-  <!-- ESTILOS -->
-  <section id="estilos">
-    <div class="container">
-      <div class="section-header">
-        <span class="eyebrow">Especialidades</span>
-        <h2 class="section-title">Estilos</h2>
-      </div>
-      <div class="styles-grid">
-        <div class="style-card">
-          <div class="style-img" style="background-image:url('images/jcazt-style/lienzo44-scaled.jpg')"></div>
-          <div class="style-info">
-            <h3>Blackwork</h3>
-            <p>Trazos fuertes, contrastes impactantes. Un lenguaje visual que grita sin hablar.</p>
-          </div>
-        </div>
-        <div class="style-card">
-          <div class="style-img" style="background-image:url('images/jcazt-style/lienzo37-scaled.jpg')"></div>
-          <div class="style-info">
-            <h3>Realismo</h3>
-            <p>Cada detalle capturado con precisión. Arte que parece respirar sobre tu piel.</p>
-          </div>
-        </div>
-        <div class="style-card">
-          <div class="style-img" style="background-image:url('images/minis-fineline/lienzo15.jpg')"></div>
-          <div class="style-info">
-            <h3>Fine Line</h3>
-            <p>Delicadeza y elegancia en cada trazo. Minimalismo que enamora a primera vista.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- GALERÍA -->
   <section id="galeria">
@@ -330,6 +298,41 @@
         <span class="eyebrow">Trabajo real</span>
         <h2 class="section-title">Portfolio</h2>
       </div>
+
+      <!-- CATEGORY CARDS -->
+      <div class="gallery-filter-cards" id="galleryCategoryCards">
+        <button class="gallery-filter-card" data-target="jcazt-style" aria-label="Ver JCAZT Style">
+          <div class="gfc-bg" style="background-image:url('images/jcazt-style/lienzo44-scaled.jpg')"></div>
+          <div class="gfc-overlay"></div>
+          <div class="gfc-info">
+            <h3>JCAZT Style</h3>
+            <span class="section-tag">Blackwork · Realismo</span>
+            <span class="gfc-count">35 piezas</span>
+          </div>
+        </button>
+        <button class="gallery-filter-card" data-target="minis-fineline" aria-label="Ver Minis · Fine Line">
+          <div class="gfc-bg" style="background-image:url('images/minis-fineline/lienzo15.jpg')"></div>
+          <div class="gfc-overlay"></div>
+          <div class="gfc-info">
+            <h3>Minis · Fine Line</h3>
+            <span class="section-tag">Delicado · Elegante</span>
+            <span class="gfc-count">31 piezas</span>
+          </div>
+        </button>
+        <button class="gallery-filter-card" data-target="conceptual" aria-label="Ver Conceptual">
+          <div class="gfc-bg" style="background-image:url('images/conceptual/lienzo47.jpg')"></div>
+          <div class="gfc-overlay"></div>
+          <div class="gfc-info">
+            <h3>Conceptual</h3>
+            <span class="section-tag">Arte · Experimentación</span>
+            <span class="gfc-count">3 piezas</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- FILTERED GALLERY VIEW -->
+      <div id="galleryView" hidden>
+        <button class="gallery-back-btn" id="galleryBack">← Volver a categorías</button>
 
       <!-- JCAZT STYLE -->
       <div class="gallery-section" id="sec-jcazt-style">
@@ -438,6 +441,8 @@
           <div class="gallery-item" data-section="conceptual" data-src="images/conceptual/lienzo46.jpg"><img src="images/conceptual/lienzo46.jpg" alt="Conceptual" loading="lazy" /><div class="gallery-overlay"><span>+</span></div></div>
         </div>
       </div>
+
+      </div><!-- /#galleryView -->
     </div>
   </section>
 
